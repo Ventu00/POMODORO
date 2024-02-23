@@ -9,31 +9,32 @@ function changeColor(color) {
 }
 var isPaused = true;
 var counterElement = document.getElementById('counter');
-var timeLeft =  25 *  60; // minutos a segundos
-let textbtn = document.getElementById('start_btn');
+var timeLeft =  0 * 60; // minutos a segundos
+var textbtn = document.getElementById('start_btn');
+var countdownInterval; // Variable para almacenar el intervalo
 
 function counter() {
-
-    const countdownInterval = setInterval(() => {
+    countdownInterval = setInterval(() => {
         if (!isPaused) {
             textbtn.innerText = "Pause";
 
-            const minutes = Math.floor(timeLeft /  60);
-            let seconds = timeLeft %  60;
+            const minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
             seconds = String(seconds).padStart(2, '0');
             counterElement.textContent = minutes + ":" + seconds;
             timeLeft--;
 
-            if (timeLeft <=  0) {
+            if (timeLeft < 0) {
                 clearInterval(countdownInterval);
-                counterElement.textContent = 'Tiempo terminado';
+                var miModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+                miModal.show();
+                textbtn.innerText = "Restart";
             }
         }
-    },  1000);
+    }, 1000);
 }
 
 function start() {
-
     if (isPaused) {
         isPaused = false;
         textbtn.innerText = "Pause";
@@ -41,7 +42,15 @@ function start() {
         isPaused = true;
         textbtn.innerText = "Resume";
     }
+
+    if (textbtn.innerText === "Restart") {
+        
+        timeLeft = 0 * 60; // 25 minutos a segundos
+        isPaused = false;
+        counter(); // Reiniciar el contador
+    }
 }
 
 // Inicializar el contador
 counter();
+
