@@ -14,17 +14,17 @@
     <div class="timeoption">
       <div class="option row">
         <div class="col-md-4">
-          <button onclick="changeColor('#181f1f')" class="custom-container custom-button classic">
+          <button onclick="changeColor('#429a73de')" class="custom-container custom-button classic">
             <h3  class="option">Classic</h3>
           </button>
         </div>
         <div class="col-md-4">
-          <button  onclick="changeColor('#1e1b21')" class="custom-container custom-button short-pause">
+          <button  onclick="changeColor('#97429ade')" class="custom-container custom-button short-pause">
             <h3 class="option">Short pause 5'</h3>
           </button>
         </div>
         <div class="col-md-4">
-          <button onclick="changeColor('#535134a2')" class="custom-container custom-button long-pause">
+          <button onclick="changeColor('#48a9a9e5')" class="custom-container custom-button long-pause">
             <h3 class="option" >Long pause 15'</h3>
           </button>
         </div>
@@ -45,27 +45,31 @@
             <div class="col">
               <h1>Pending</h1>
               <div id="contentPending" class="workcont">
-  
+                <div class="row">
+                  <div class="placeholder --start">
+                    <div class="item" draggable="true">Перетащи меня</div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col">
               <h1>Doing</h1>
               <div id="contentProgress" class="workcont">
-                
+                <div class="placeholder --progress"></div>
+
               </div>
             </div>
             <div class="col">
               <h1>Done</h1>
               <div id="contentCompleted" class="workcont">
-  
+                <div class="placeholder --done"></div>
+
               </div>
             </div>
           </div>
         </div>
         
       </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,6 +1,6 @@
 body{
     background-color: #060606;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
 }
 h1{
     font-family: 'Poppins', sans-serif;
@@ -22,7 +22,7 @@ p{
 
 .bar{
     margin-top: 0;
-    background-color: #26323195;
+    background-color:#429a73de ;
     border-radius: 15px;
     padding: 10px;
     margin: 5px;
@@ -42,7 +42,7 @@ p{
 }
 
 .contcols{
-    background-color: #26323130;
+    background-color: #202020de;
     border-radius: 15px;
     margin: 20px;
     padding: 10px;
@@ -55,6 +55,11 @@ p{
     padding: 10px;
 }
 
+.add{
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
 
 .custom-container {
 
@@ -65,13 +70,13 @@ p{
     text-align: center;
   }
   .classic {
-    background-color: #181f1f;
+    background-color: #429a73de;
   }
   .short-pause {
-    background-color: #1e1b21;
+    background-color: #97429ade;
   }
   .long-pause {
-    background-color: #535134a2;
+    background-color: #48a9a9e5;
   }
 
   .timeoption{
@@ -94,8 +99,12 @@ p{
     margin-top: 0;
     width: 270px;
     cursor: pointer;
+    
 
   }
+.col{
+  background-color:#429a73de ;
+}
 
   .option{
     font-size: 16px;
@@ -116,6 +125,16 @@ p{
   }
 .modal{
   z-index: 11111;
+  background-color: #060606b6;
+}
+.modal-body{
+  background-color: #429a73de;
+}
+.modal-header{
+  background-color: #0000009e;
+}
+.modal-footer{
+  background-color: #0000009e;
 }
 
 .close {
@@ -139,4 +158,122 @@ p{
 .btn-close{
   color: #ffffff;
   background-color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 968px) {
+  .option .col-md-4 {
+    flex: 0 0 33.33%; /* Cambia el ancho de los elementos a 33.33% cuando el ancho de la ventana es menor o igual a 768px */
+  }
+
+  .custom-container {
+    max-width: 150px; /* Reducir el ancho máximo de los botones */
+    padding: 5px; /* Reducir el relleno de los botones */
+  }
+
+  .option h3 {
+    font-size: 14px; /* Reducir el tamaño de la fuente para los títulos */
+  }
+}
+
+@media screen and (max-width: 518px) {
+  .option .col-md-4 {
+    flex: 0 0 33.33%; /* Cambia el ancho de los elementos a 33.33% cuando el ancho de la ventana es menor o igual a 768px */
+  }
+
+  .custom-container {
+    max-width: 110px; /* Reducir el ancho máximo de los botones */
+    padding: 5px; /* Reducir el relleno de los botones */
+  }
+
+  .option h3 {
+    font-size: 14px; /* Reducir el tamaño de la fuente para los títulos */
+  }
+}
+
+/*////////////////////////////////////*/
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+
+
+
+
+.col-header {
+  width: 150px;
+  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+  border-radius: 20px;
+  padding: 0.8rem 1rem;
+  color: #fff;
+}
+
+.item {
+  width: 150px;
+  height: 66px;
+  border: 1px solid #eee;
+  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+  border-radius: 20px;
+  background: #f7f6f7;
+  padding: 0.8rem 1rem;
+  color: #828282;
+  text-align: center;
+  cursor: grab;
+
+  transition: 500ms;
+}
+
+.item.--hold {
+  /* border: 3px solid #aaa; */
+  opacity: 0.15;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.placeholder {
+  width: 150px;
+  height: 66px;
+
+  position: relative;
+}
+
+.placeholder.--entered {
+  /* border-top: 2px solid #8ed7ed; */
+}
+
+.placeholder::before {
+  content: '';
+  height: 3px;
+  width: 100%;
+
+  opacity: 0.6;
+
+  position: absolute;
+  top: 0;
+}
+
+.start {
+  background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+}
+
+.placeholder.--entered.--start::before {
+  background: linear-gradient(90deg, transparent 0%, #ff85e4 30%, #229efd 70%, transparent 100%);
+}
+
+
+.progress {
+  background: linear-gradient(90deg, #209cff 0%, #68e0cf 100%);
+}
+
+.placeholder.--entered.--progress::before {
+  background: linear-gradient(90deg, transparent 0%, #209cff 30%, #68e0cf 70%, transparent 100%);
+}
+
+
+.done {
+  background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.placeholder.--entered.--done::before {
+  background: linear-gradient(90deg, transparent 0%, #84fab0 30%, #8fd3f4 70%, transparent 100%);
 }
