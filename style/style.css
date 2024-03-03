@@ -49,7 +49,7 @@ p{
 }
 
 .workcont{
-    background-color: #00000030;
+    background-color: #0722154f;
     border-radius: 15px;
     margin: 20px;
     padding: 10px;
@@ -86,7 +86,15 @@ p{
   .timeoption{
     margin: 0;
   }
+  .custom-button{
+    transition: width 0.3s ease, height 0.3s ease, top 0.3s ease; 
 
+  }
+
+  .custom-button:hover{
+    top: 2px;
+    width: 200px;
+  }
   .custom-container{
     margin: 0;
     border-radius: 10px;
@@ -198,25 +206,20 @@ p{
 
 
 
-.col-header {
-  width: 150px;
-  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
-  border-radius: 20px;
-  padding: 0.8rem 1rem;
-  color: #fff;
-}
+
 
 .item {
-  width: 150px;
-  height: 66px;
-  border: 1px solid #eee;
+  width: 100%;
+  height: 125px;
+  border: 1px solid #646464;
   box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
   border-radius: 20px;
-  background: #f7f6f7;
+  background-color: #000000;
   padding: 0.8rem 1rem;
-  color: #828282;
+  color: #ffffff;
   text-align: center;
   cursor: grab;
+  opacity: 1;
 
   transition: 500ms;
 }
@@ -231,14 +234,18 @@ p{
 }
 
 .placeholder {
-  width: 150px;
-  height: 66px;
-
+  width: 100%;
+  height: 125px;
+  background-color: #09ff0000;
   position: relative;
 }
 
 .placeholder.--entered {
   /* border-top: 2px solid #8ed7ed; */
+}
+
+.--start{
+ 
 }
 
 .placeholder::before {
@@ -251,29 +258,67 @@ p{
   position: absolute;
   top: 0;
 }
-
-.start {
-  background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+.row{
+  display: flex; /* Utiliza flexbox */
+    justify-content: center;
 }
 
-.placeholder.--entered.--start::before {
-  background: linear-gradient(90deg, transparent 0%, #ff85e4 30%, #229efd 70%, transparent 100%);
+.generar {
+  display: flex; /* Usar flexbox */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  width: 50px;
+  height: 50px;
+  background-image: url('agregar.png');
+  background-color: transparent;
+  background-size: contain; /* Ajusta la imagen para que se ajuste completamente dentro del área del botón */
+  background-repeat: no-repeat; /* Evita que la imagen se repita en caso de que el botón sea más grande que la imagen */
+  cursor: pointer;
+  border: none; /* Elimina el borde */
+  outline: none; /* Elimina el contorno al hacer clic */
+
+  text-transform: uppercase;
+  transition: width 0.3s ease, height 0.3s ease, top 0.3s ease; 
 }
 
-
-.progress {
-  background: linear-gradient(90deg, #209cff 0%, #68e0cf 100%);
+.generar:hover{
+  width: 60px;
+  height: 60px;
+  top: 2px;
 }
 
-.placeholder.--entered.--progress::before {
-  background: linear-gradient(90deg, transparent 0%, #209cff 30%, #68e0cf 70%, transparent 100%);
+.generar:active{
+  box-shadow: none;
+  top: 6px;
 }
 
-
-.done {
-  background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+#RestCounter{
+  font-size: 60px;
 }
 
-.placeholder.--entered.--done::before {
-  background: linear-gradient(90deg, transparent 0%, #84fab0 30%, #8fd3f4 70%, transparent 100%);
+.modal-title{
+  font-size: 40px;
 }
+
+.blocklayer{
+  width: 100%;
+  height: 100%;
+}
+.check-emoji {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2em; 
+}
+
+.date{
+  font-size: 10px;
+
+}
+
+.delete{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pomodoro - Àlex Ventura</title>
@@ -14,85 +18,106 @@
     <div class="timeoption">
       <div class="option row">
         <div class="col-md-4">
-          <button onclick="changeColor('#429a73de')" class="custom-container custom-button classic">
+          <button onclick="changeColor('#429a73de')" class=" animate__animated animate__fadeInDown custom-container custom-button classic">
             <h3  class="option">Classic</h3>
           </button>
         </div>
         <div class="col-md-4">
-          <button  onclick="changeColor('#97429ade')" class="custom-container custom-button short-pause">
+          <button  onclick="changeColor('#97429ade')" class=" animate__animated animate__fadeInDown custom-container custom-button short-pause">
             <h3 class="option">Short pause 5'</h3>
           </button>
         </div>
         <div class="col-md-4">
-          <button onclick="changeColor('#48a9a9e5')" class="custom-container custom-button long-pause">
+          <button onclick="changeColor('#48a9a9e5')" class="animate__animated animate__fadeInDown custom-container custom-button long-pause">
             <h3 class="option" >Long pause 15'</h3>
           </button>
         </div>
       </div>
     </div>
-    <div class="bar container text-center">
-        <button class=" startbtn btn btn-dark" id="start_btn" onclick="start()">Start</button>
+    <div class="container text-center animate__animated  animate__fadeIn">
+      <div class="bar container text-center ">
+        <button class="startbtn btn btn-dark" id="start_btn" onclick="start()">Start</button>
         <div class="tempo">
-          <p class="counter"data-bs-toggle="modal" data-bs-target="#exampleModal" id="counter">25:00</p>
-        
+          <p class="counter" data-bs-toggle="modal" data-bs-target="#exampleModal" id="counter">25:00</p>
         </div>
         <h1 id="apptittle" class="apptittle">POMODORO</h1>
-  
-        </div>
-  
-        <div class="contcols">
-          <div class="row align-items-start">
-            <div class="col">
-              <h1>Pending</h1>
-              <div id="contentPending" class="workcont">
-                <div class="row">
-                  <div class="placeholder --start">
-                    <div class="item" draggable="true">Перетащи меня</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <h1>Doing</h1>
-              <div id="contentProgress" class="workcont">
-                <div class="placeholder --progress"></div>
-
-              </div>
-            </div>
-            <div class="col">
-              <h1>Done</h1>
-              <div id="contentCompleted" class="workcont">
-                <div class="placeholder --done"></div>
-
+      </div>
+    
+      <div class="contcols animate__animated  animate__fadeIn">
+        <div class="row  align-items-start ">
+          <div class="col animate__animated animate__fadeInUp">
+            <h1>Pending</h1>
+            <div id="contentPending" class="workcont">
+              <div class="row">
+                <button class="generar" data-bs-toggle="modal" data-bs-target="#exampleModal2"></button>
+         
               </div>
             </div>
           </div>
-        </div>
-        
-      </div>
+          <div class="col animate__animated animate__fadeInUp">
+            <h1>Doing</h1>
+            <div id="contentProgress" class="workcont">
+            </div>
+          </div>
+          <div class="col animate__animated animate__fadeInUp">
+            <h1>Done</h1>
+            <div class="blocklayer">
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+            <div  id="contentCompleted" class="workcont">
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Break time! </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="RestCounter" style="display: none;">5:00</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal animate__animated animate__fadeIn" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nueva Tarea</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="taskForm">
+              <div class="mb-3">
+                <label for="taskInput" class="form-label">Titulo</label>
+                <input type="text" class="form-control" id="taskInput" placeholder="Ingrese la nueva tarea">
+                <br>
+                <label for="taskCont" class="form-label">Descripcion Tarea</label>
+                <input type="text" class="form-control" id="taskCont" placeholder="Ingrese la descripción">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" onclick="generarElemento()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script/script.js"></script>
 </body>
 </html>
-
 
