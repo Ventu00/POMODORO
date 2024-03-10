@@ -1,44 +1,44 @@
-// Variables globales para el estado de los colores
 let green = false;
 let violet = false;
 let blue = false;
 
-// Función para cambiar el color y manejar el estado de violet
 function changeColor(color) {
-    let colElements = document.querySelectorAll('.col');
-    let barElement = document.querySelector('.bar');
-    let modalbody = document.querySelector('.modal-body');
-    modalbody.style.backgroundColor = color;
+  let modalBodyElements = document.querySelectorAll('.modal-body');
+  modalBodyElements.forEach(function(element) {
+      element.style.backgroundColor = color;
+  });
 
-    colElements.forEach(function(element) {
-        element.style.backgroundColor = color;
-    });
-    barElement.style.backgroundColor = color;
+  let colElements = document.querySelectorAll('.col');
+  let barElement = document.querySelector('.bar');
 
-    if (color === '#97429ade') {
-        violet = true;
-        blue = false;
 
-        violetCounterFunction(); // Llama a la función para mostrar y actualizar el contador violeta
-    } else {
-        violet = false;
-    }
-    if (color === '#48a9a9e5') {
+  colElements.forEach(function(element) {
+      element.style.backgroundColor = color;
+  });
+  barElement.style.backgroundColor = color;
+
+  if (color === '#97429ade') {
+      violet = true;
+      blue = false;
+      violetCounterFunction(); 
+  } else {
+      violet = false;
+  }
+  if (color === '#48a9a9e5') {
       blue = true;
       violet = false;
-
-      blueCounterFunction(); // Llama a la función para mostrar y actualizar el contador violeta
+      blueCounterFunction();
   } else {
-    blue = false;
+      blue = false;
   }
 }
 
-// Función para el contador violeta
+
 function violetCounterFunction() {
     if (violet) {
         const RestCounter = document.getElementById('RestCounter');
-        RestCounter.style.display = 'block'; // Mostrar el contador violeta
-        let violetTimeLeft = 300; // 5 minutos en segundos
+        RestCounter.style.display = 'block'; 
+        let violetTimeLeft = 300; 
 
         function updateCounter() {
             const minutes = Math.floor(violetTimeLeft / 60);
@@ -52,15 +52,15 @@ function violetCounterFunction() {
             }
         }
 
-        updateCounter(); // Iniciar el contador violeta
+        updateCounter(); 
     }
 }
 
 function blueCounterFunction() {
   if (blue) {
       const RestCounter = document.getElementById('RestCounter');
-      RestCounter.style.display = 'block'; // Mostrar el contador violeta
-      let violetTimeLeft = 900; // 5 minutos en segundos
+      RestCounter.style.display = 'block'; 
+      let violetTimeLeft = 900; 
 
       function updateCounter() {
           const minutes = Math.floor(violetTimeLeft / 60);
@@ -74,16 +74,15 @@ function blueCounterFunction() {
           }
       }
 
-      updateCounter(); // Iniciar el contador violeta
+      updateCounter(); 
   }
 }
 
-// Resto de tu código relacionado con el contador y el modal
-var isPaused = true;
-var counterElement = document.getElementById('counter');
-var timeLeft = 0 * 60; // minutos a segundos
-var textbtn = document.getElementById('start_btn');
-var countdownTimeout; // Variable para almacenar el timeout
+let isPaused = true;
+let counterElement = document.getElementById('counter');
+let timeLeft = 25 * 60; 
+let textbtn = document.getElementById('start_btn');
+let countdownTimeout; 
 
 function counter() {
     if (!isPaused) {
@@ -98,14 +97,14 @@ function counter() {
         if (timeLeft >= 0) {
             countdownTimeout = setTimeout(counter, 1000);
         } else {
-            var miModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+            let miModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
             miModal.show();
             textbtn.innerText = "Restart";
         }
     }
 }
 
-// Llamada inicial para iniciar el contador violeta si violet es verdadero
+
 violetCounterFunction();
 blueCounterFunction();
 
@@ -113,21 +112,20 @@ function start() {
     if (isPaused) {
         isPaused = false;
         textbtn.innerText = "Pause";
-        counter(); // Comienza la cuenta regresiva
+        counter(); 
     } else {
         isPaused = true;
         textbtn.innerText = "Resume";
-        clearTimeout(countdownTimeout); // Pausa la cuenta regresiva
+        clearTimeout(countdownTimeout); 
     }
 
     if (textbtn.innerText === "Restart") {
-        timeLeft = 1 * 60; // 1 minuto a segundos
+        timeLeft = 1 * 60; 
         isPaused = false;
-        counter(); // Reiniciar el contador
+        counter(); 
     }
 }
 
-// Inicializar el contador
 counter();
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
@@ -138,9 +136,7 @@ counter();
   
       item.addEventListener('dragstart', function (event) {
         event.target.classList.add('--hold')
-        // setTimeout(() => {
-        //   event.target.classList.add('--hide')
-        // }, 0)
+       
       })
   
       item.addEventListener('dragend', (event) => {
@@ -180,94 +176,83 @@ counter();
 
   // Función para obtener la fecha actual en formato legible
 function obtenerFechaActual() {
-  var fecha = new Date();
-  var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
-  var opcionesHora = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-  return 'Fecha: ' + fecha.toLocaleDateString('es-ES', opcionesFecha) + ' Hora: ' + fecha.toLocaleTimeString('es-ES', opcionesHora);
+  let fecha = new Date();
+  let opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+  let opcionesHora = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+  return 'Date: ' + fecha.toLocaleDateString('es-ES', opcionesFecha) + ' Hour: ' + fecha.toLocaleTimeString('es-ES', opcionesHora);
 }
 
 
 function generarElemento() {
-  var taskInput = document.getElementById('taskInput').value;
-  var taskCont = document.getElementById('taskCont').value;
+  let taskInput = document.getElementById('taskInput').value;
+  let taskCont = document.getElementById('taskCont').value;
   
   // Verificar si el campo de entrada está vacío
   if (taskInput.trim() === '') {
-      alert('Por favor ingrese un título válido.');
+      alert('Please enter a valid title.');
       return;
   }
   
-  // Crear un nuevo elemento para el item
-  var item = document.createElement('div');
+  let item = document.createElement('div');
   item.className = 'item animate__animated animate__bounceIn';
   
-  // Crear un elemento h2 para el título y asignarle el valor de taskInput
-  var titleElement = document.createElement('h2');
+  let titleElement = document.createElement('h2');
   titleElement.textContent = taskInput;
   
-  // Crear un elemento p para el contenido del párrafo y asignarle el valor de taskCont
-  var paragraphElement = document.createElement('p');
+  let paragraphElement = document.createElement('p');
   paragraphElement.textContent = taskCont;
   
-  // Crear un nuevo elemento span para la fecha y asignarle el valor de la fecha actual
-  var dateElement = document.createElement('span');
+  let dateElement = document.createElement('span');
   dateElement.textContent = obtenerFechaActual();
-  dateElement.className = 'date'; // Añadir la clase 'date' al elemento
+  dateElement.className = 'date';
   
-  // Crear un botón para eliminar el elemento
-  var deleteButton = document.createElement('button');
+  let deleteButton = document.createElement('button');
   deleteButton.type = 'button';
   deleteButton.className = 'delete btn btn-danger btn-sm';
   deleteButton.textContent = 'Delete';
-  // Agregar un manejador de evento para eliminar el elemento al hacer clic en el botón
   deleteButton.addEventListener('click', function() {
-    // Mostrar una alerta para confirmar la eliminación
-    var confirmar = confirm('¿Estás seguro de que deseas eliminar este elemento?');
+    let confirmar = confirm('Are you sure you want to delete this item?');
     
-    // Verificar si el usuario hizo clic en "Aceptar" en la alerta
     if (confirmar) {
-        item.remove(); // Eliminar el elemento 'item'
+        item.remove(); 
     }
 });
 
   
-  // Agregar los elementos al elemento 'item'
-  item.appendChild(deleteButton); // Agregar el botón de eliminar
+  item.appendChild(deleteButton); 
   item.appendChild(titleElement);
   item.appendChild(paragraphElement);
   item.appendChild(dateElement);
     //item.textContent = taskInput + " " + taskCont; // Asignar el valor del campo de entrada y el contenido del campo de texto como contenido del elemento
 
     item.draggable = true; // Permitir que el elemento sea arrastrable
-    var itemId = 'item' + Date.now(); // Generar un ID único para el elemento
+    let itemId = 'item' + Date.now(); // Generar un ID único para el elemento
     item.id = itemId;
     item.addEventListener('dragstart', dragStart);
 
-    // Obtener los contenedores de cada columna
-    var contentPending = document.getElementById('contentPending');
-    var contentProgress = document.getElementById('contentProgress');
-    var contentCompleted = document.getElementById('contentCompleted');
+    let contentPending = document.getElementById('contentPending');
+    let contentProgress = document.getElementById('contentProgress');
+    let contentCompleted = document.getElementById('contentCompleted');
 
-    // Crear un placeholder vacío para cada columna
-    var placeholderPending = document.createElement('div');
+    // Crear un placeholder 
+    let placeholderPending = document.createElement('div');
     placeholderPending.className = 'placeholder --start';
     placeholderPending.addEventListener('dragover', dragOver);
     placeholderPending.addEventListener('drop', drop);
     contentPending.appendChild(placeholderPending);
 
-    var placeholderProgress = document.createElement('div');
+    let placeholderProgress = document.createElement('div');
     placeholderProgress.className = 'placeholder --progress';
     placeholderProgress.addEventListener('dragover', dragOver);
     placeholderProgress.addEventListener('drop', drop);
     contentProgress.appendChild(placeholderProgress);
 
-    var placeholderCompleted = document.createElement('div');
+    let placeholderCompleted = document.createElement('div');
     placeholderCompleted.className = 'placeholder --done';
     placeholderCompleted.addEventListener('dragover', dragOver);
     placeholderCompleted.addEventListener('drop', drop);
     contentCompleted.appendChild(placeholderCompleted);
 
-    // Agregar el nuevo elemento al placeholder inicial
     placeholderPending.appendChild(item);
 
     // Limpiar el campo de entrada del formulario después de generar el elemento
@@ -276,7 +261,6 @@ function generarElemento() {
 
   }
 
-// Manipulador de evento para iniciar el arrastre
 function dragStart(event) {
     event.dataTransfer.setData('text/plain', event.target.id);
 }
@@ -289,24 +273,19 @@ function dragOver(event) {
 // Manipulador de evento para soltar elementos en los placeholders
 function drop(event) {
   event.preventDefault();
-  var itemId = event.dataTransfer.getData('text/plain');
-  var item = document.getElementById(itemId);
-  var targetPlaceholder = event.target;
+  let itemId = event.dataTransfer.getData('text/plain');
+  let item = document.getElementById(itemId);
+  let targetPlaceholder = event.target;
 
   if (targetPlaceholder.classList.contains('--done')) {
     
-      // Cambiar el color de fondo y el color del texto del item
       item.style.backgroundColor = '#09ff00';
       item.style.color = 'black';
 
-      // Crear un span para el emoji de check
-      var checkEmoji = document.createElement('span');
+      let checkEmoji = document.createElement('span');
       checkEmoji.textContent = '✅';
       checkEmoji.className = 'check-emoji';
-      // Añadir el emoji de check al contenido existente del item
       item.appendChild(checkEmoji);
-
-      
   }
 
   targetPlaceholder.appendChild(item);
