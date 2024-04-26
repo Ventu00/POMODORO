@@ -9,6 +9,28 @@ function dragStart(e) {
         e.target.classList.add('hide');
     }, 0);
 }
+// Agregar un nuevo elemento al hacer clic en el botón
+const addButton = document.getElementById('addButton');
+addButton.addEventListener('click', addItem);
+
+function addItem() {
+    // Creamos un nuevo elemento con la clase y atributos necesarios
+    const newElement = document.createElement('div');
+    newElement.classList.add('item');
+    newElement.draggable = true;
+    newElement.textContent = 'Nuevo Elemento';
+
+    // Asignamos un ID único al nuevo elemento
+    const newId = 'item' + (document.querySelectorAll('.item').length + 1);
+    newElement.id = newId;
+
+    // Agregamos el nuevo elemento al primer contenedor
+    const firstBox = document.getElementById('box1');
+    firstBox.appendChild(newElement);
+
+    // Añadimos el controlador de eventos dragstart al nuevo elemento
+    newElement.addEventListener('dragstart', dragStart);
+}
 
 
 /* drop targets */
