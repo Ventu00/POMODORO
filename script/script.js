@@ -261,16 +261,16 @@ function generarElemento() {
 
   }
 
-function dragStart(event) {
-    event.dataTransfer.setData('text/plain', event.target.id);
+
+function dragStart(event) {//inicio el arrastre aqui
+    event.dataTransfer.setData('text/plain', event.target.id); //tranfiero texto e id
 }
 
-// Manipulador de evento para permitir soltar elementos
 function dragOver(event) {
-    event.preventDefault();
+    event.preventDefault();//el navegador no actua sobre el contenido cuando lo arrastro
 }
 
-// Manipulador de evento para soltar elementos en los placeholders
+// soltar y termunar
 function drop(event) {
   event.preventDefault();
   let itemId = event.dataTransfer.getData('text/plain');
