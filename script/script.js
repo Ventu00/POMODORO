@@ -56,6 +56,7 @@ function violetCounterFunction() {
     }
 }
 
+
 function blueCounterFunction() {
   if (blue) {
       const RestCounter = document.getElementById('RestCounter');
