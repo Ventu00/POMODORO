@@ -184,6 +184,7 @@ function obtenerFechaActual() {
 
 
 function generarElemento() {
+  //pillo lo del modal y se mete tal cual del value
   let taskInput = document.getElementById('taskInput').value;
   let taskCont = document.getElementById('taskCont').value;
   
@@ -255,7 +256,7 @@ function generarElemento() {
 
     placeholderPending.appendChild(item);
 
-    // Limpiar el campo de entrada del formulario después de generar el elemento
+    // Limpiar el campo del formulario después de generar el elemento
     document.getElementById('taskInput').value = '';
     document.getElementById('taskCont').value = '';
 
