@@ -157,15 +157,15 @@ counter();
         <button class="deleteButton">Eliminar</button>
     `;
 
-    // Asignar un ID 
+    // AsignaMOS EL ID 
     const newId = 'item' + (document.querySelectorAll('.item').length + 1);
     newElement.id = newId;
 
-    // Agregar el nuevo elemento al primer contenedor
+    // Agregamos eL elemento al primer contenedor
     const firstBox = document.getElementById('box1');
     firstBox.appendChild(newElement);
 
-    // Añadir el controlador de eventos dragstart
+    // Añadimos el controlador de eventos dragstart
     newElement.addEventListener('dragstart', dragStart);
 
     const deleteButton = newElement.querySelector('.deleteButton');
