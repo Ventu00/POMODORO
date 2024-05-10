@@ -13,12 +13,7 @@ p{
     font-family: 'Montserrat', sans-serif;
 }
     
-.col{
-    background-color: #26323184;
-    border-radius: 15px;
-    margin: 20px;
-    padding: 10px;
-}
+
 
 .bar{
     margin-top: 0;
@@ -204,64 +199,56 @@ p{
 
 
 
+.drop-targets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  margin: 20px 0;
+}
+/* Estilo para los elementos dentro de boxcompleted */
+#boxcompleted .item {
+  background-color: green;
+}
+
+/* Clase para el contenedor boxcompleted cuando un elemento es soltado en él */
+#boxcompleted.dropped-in-boxcompleted {
+  /* Puedes agregar estilos adicionales si lo deseas */
+}
 
 
 
 
 .item {
-  width: 100%;
-  height: 125px;
-  border: 1px solid #646464;
-  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
-  border-radius: 20px;
-  background-color: #000000;
-  padding: 0.8rem 1rem;
-  color: #ffffff;
-  text-align: center;
-  cursor: grab;
-  opacity: 1;
+  min-height: 100px;
+  width: 200px;
+  background-color: #3e3e3e;
+  margin: 20px;
 
-  transition: 500ms;
 }
 
-.item.--hold {
-  /* border: 3px solid #aaa; */
-  opacity: 0.15;
+.box {
+  min-height: 200px; /* Cambiando 'height' por 'min-height' */
+  min-width: 200px;
+  border: solid 3px #ccc;
+  margin: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.item:active {
-  cursor: grabbing;
-}
 
-.placeholder {
-  width: 100%;
-  height: 125px;
-  background-color: #09ff0000;
-  position: relative;
-}
 
-.placeholder.--entered {
-  /* border-top: 2px solid #8ed7ed; */
-}
 
-.--start{
- 
-}
 
-.placeholder::before {
-  content: '';
-  height: 3px;
-  width: 100%;
 
-  opacity: 0.6;
 
-  position: absolute;
-  top: 0;
-}
-.row{
-  display: flex; /* Utiliza flexbox */
-    justify-content: center;
-}
+
+
+
 
 .generar {
   display: flex; /* Usar flexbox */

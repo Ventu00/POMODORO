@@ -35,33 +35,10 @@ function changeColor(color) {
 
 
 function violetCounterFunction() {
-    if (violet) {
-        const RestCounter = document.getElementById('RestCounter');
-        RestCounter.style.display = 'block'; 
-        let violetTimeLeft = 300; 
-
-        function updateCounter() {
-            const minutes = Math.floor(violetTimeLeft / 60);
-            let seconds = violetTimeLeft % 60;
-            seconds = String(seconds).padStart(2, '0');
-            RestCounter.textContent = minutes + ":" + seconds;
-            violetTimeLeft--;
-
-            if (violetTimeLeft >= 0) {
-                setTimeout(updateCounter, 1000);
-            }
-        }
-
-        updateCounter(); 
-    }
-}
-
-
-function blueCounterFunction() {
-  if (blue) {
+  if (violet) {
       const RestCounter = document.getElementById('RestCounter');
       RestCounter.style.display = 'block'; 
-      let violetTimeLeft = 900; 
+      let violetTimeLeft = 300; 
 
       function updateCounter() {
           const minutes = Math.floor(violetTimeLeft / 60);
@@ -70,39 +47,61 @@ function blueCounterFunction() {
           RestCounter.textContent = minutes + ":" + seconds;
           violetTimeLeft--;
 
-          if (violetTimeLeft >= 0) {
-              setTimeout(updateCounter, 1000);
+          if (violetTimeLeft < 0) {
+              clearInterval(violetInterval); // Stop the interval when time runs out
           }
       }
 
-      updateCounter(); 
+      const violetInterval = setInterval(updateCounter, 1000); // Run updateCounter every second
   }
+}
+
+
+function blueCounterFunction() {
+if (blue) {
+    const RestCounter = document.getElementById('RestCounter');
+    RestCounter.style.display = 'block'; 
+    let blueTimeLeft = 900; 
+
+    function updateCounter() {
+        const minutes = Math.floor(blueTimeLeft / 60);
+        let seconds = blueTimeLeft % 60;
+        seconds = String(seconds).padStart(2, '0');
+        RestCounter.textContent = minutes + ":" + seconds;
+        blueTimeLeft--;
+
+        if (blueTimeLeft < 0) {
+            clearInterval(blueInterval); // Stop the interval when time runs out
+        }
+    }
+
+    const blueInterval = setInterval(updateCounter, 1000); // Run updateCounter every second
+}
 }
 
 let isPaused = true;
 let counterElement = document.getElementById('counter');
-let timeLeft = 25 * 60; 
+let timeLeft =25 * 60; 
 let textbtn = document.getElementById('start_btn');
-let countdownTimeout; 
+let countdownInterval; 
 
 function counter() {
-    if (!isPaused) {
-        textbtn.innerText = "Pause";
+  if (!isPaused) {
+      textbtn.innerText = "Pause";
 
-        const minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        seconds = String(seconds).padStart(2, '0');
-        counterElement.textContent = minutes + ":" + seconds;
-        timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      let seconds = timeLeft % 60;
+      seconds = String(seconds).padStart(2, '0');
+      counterElement.textContent = minutes + ":" + seconds;
+      timeLeft--;
 
-        if (timeLeft >= 0) {
-            countdownTimeout = setTimeout(counter, 1000);
-        } else {
-            let miModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
-            miModal.show();
-            textbtn.innerText = "Restart";
-        }
-    }
+      if (timeLeft < 0) {
+          clearInterval(countdownInterval); // Stop the interval when time runs out
+          let miModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+          miModal.show();
+          textbtn.innerText = "Restart";
+      }
+  }
 }
 
 
@@ -110,196 +109,153 @@ violetCounterFunction();
 blueCounterFunction();
 
 function start() {
-    if (isPaused) {
-        isPaused = false;
-        textbtn.innerText = "Pause";
-        counter(); 
-    } else {
-        isPaused = true;
-        textbtn.innerText = "Resume";
-        clearTimeout(countdownTimeout); 
-    }
+  if (isPaused) {
+      isPaused = false;
+      textbtn.innerText = "Pause";
+      countdownInterval = setInterval(counter, 1000); // Start the countdown interval
+  } else {
+      isPaused = true;
+      textbtn.innerText = "Resume";
+      clearInterval(countdownInterval); // Pause the countdown interval
+  }
 
-    if (textbtn.innerText === "Restart") {
-        timeLeft = 1 * 60; 
-        isPaused = false;
-        counter(); 
-    }
+  if (textbtn.innerText === "Restart") {
+      timeLeft = 1 * 60; 
+      isPaused = false;
+      counter(); 
+  }
 }
 
 counter();
-(function () {
-    document.addEventListener('DOMContentLoaded', function () {
-  
-  
-  
-      const item = document.querySelector('.item')
-  
-      item.addEventListener('dragstart', function (event) {
-        event.target.classList.add('--hold')
-       
-      })
-  
-      item.addEventListener('dragend', (event) => {
-        event.target.classList.remove('--hold')//, '--hide'
-  
-      })
-  
-  
-  
-      const placeholders = document.querySelectorAll('.placeholder')
-  
-      for (const placeholder of placeholders) {
-        placeholder.addEventListener('dragover', dragover)
-        placeholder.addEventListener('dragenter', dragenter)
-        placeholder.addEventListener('dragleave', dragleave)
-        placeholder.addEventListener('drop', drop)
-      }
-  
-      function dragover(event) {
-        event.preventDefault()
-      }
-      function dragenter(event) {
-        event.target.classList.add('--entered')
-      }
-      function dragleave(event) {
-        event.target.classList.remove('--entered')
-      }
-      function drop(event) {
-        event.target.prepend(item)
-        event.target.classList.remove('--entered')
-      }
-  
-  
-  
-    })
-  })()
+
+
 
   // Función para obtener la fecha actual en formato legible
-function obtenerFechaActual() {
-  let fecha = new Date();
-  let opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
-  let opcionesHora = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-  return 'Date: ' + fecha.toLocaleDateString('es-ES', opcionesFecha) + ' Hour: ' + fecha.toLocaleTimeString('es-ES', opcionesHora);
+  function obtenerFechaActual() {
+    let fecha = new Date();
+    let opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+    let opcionesHora = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    return 'Date: ' + fecha.toLocaleDateString('es-ES', opcionesFecha) + ' Hour: ' + fecha.toLocaleTimeString('es-ES', opcionesHora);
+  }
+  
+  // Agregar un nuevo elemento al hacer clic en el botón
+  const addButton = document.getElementById('addButton');
+  addButton.addEventListener('click', addItem);
+  
+  function addItem() {
+    // Obtener los valores del formulario
+    const taskName = document.getElementById('taskName').value;
+    const description = document.getElementById('description').value;
+    const category = document.getElementById('category').value;
+
+    // Crear un nuevo elemento con los detalles proporcionados
+    const newElement = document.createElement('div');
+    newElement.classList.add('item');
+    newElement.draggable = true;
+
+    // Contenido del nuevo elemento (incluyendo el botón de eliminar)
+    newElement.innerHTML = `
+        <p>Tarea: ${taskName}</p>
+        <p>Descripción: ${description}</p>
+        <p>Categoría: ${category}</p>
+        <p>${obtenerFechaActual()}</p>
+        <button class="deleteButton">Eliminar</button>
+    `;
+
+    // Asignar un ID único al nuevo elemento
+    const newId = 'item' + (document.querySelectorAll('.item').length + 1);
+    newElement.id = newId;
+
+    // Agregar el nuevo elemento al primer contenedor
+    const firstBox = document.getElementById('box1');
+    firstBox.appendChild(newElement);
+
+    // Añadir el controlador de eventos dragstart al nuevo elemento
+    newElement.addEventListener('dragstart', dragStart);
+
+    // Agregar el controlador de eventos clic al botón de eliminar
+    const deleteButton = newElement.querySelector('.deleteButton');
+    deleteButton.addEventListener('click', () => {
+        // Mostrar un alerta y eliminar el elemento si se confirma
+        if (confirm("¿Seguro que quieres eliminar esta tarea?")) {
+            newElement.remove();
+        }
+    });
+}
+
+  
+
+// Función para el evento dragstart
+function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+    setTimeout(() => {
+        e.target.classList.add('hide');
+    }, 0);
 }
 
 
-function generarElemento() {
-  //pillo lo del modal y se mete tal cual del value
-  let taskInput = document.getElementById('taskInput').value;
-  let taskCont = document.getElementById('taskCont').value;
-  
-  // Verificar si el campo de entrada está vacío
-  if (taskInput.trim() === '') {
-      alert('Please enter a valid title.');
-      return;
-  }
-  
-  let item = document.createElement('div');
-  item.className = 'item animate__animated animate__bounceIn';
-  
-  let titleElement = document.createElement('h2');
-  titleElement.textContent = taskInput;
-  
-  let paragraphElement = document.createElement('p');
-  paragraphElement.textContent = taskCont;
-  
-  let dateElement = document.createElement('span');
-  dateElement.textContent = obtenerFechaActual();
-  dateElement.className = 'date';
-  
-  let deleteButton = document.createElement('button');
-  deleteButton.type = 'button';
-  deleteButton.className = 'delete btn btn-danger btn-sm';
-  deleteButton.textContent = 'Delete';
-  deleteButton.addEventListener('click', function() {
-    let confirmar = confirm('Are you sure you want to delete this item?');
-    
-    if (confirmar) {
-        item.remove(); 
+/* drop targets */
+const boxes = document.querySelectorAll('.box');
+
+boxes.forEach(box => {
+    box.addEventListener('dragenter', dragEnter);
+    box.addEventListener('dragover', dragOver);
+    box.addEventListener('dragleave', dragLeave);
+    box.addEventListener('drop', drop);
+});
+
+function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+}
+
+function dragOver(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+
+    // Verificar si el contenedor es el boxcompleted
+    if (e.target.id === 'boxcompleted') {
+        e.dataTransfer.dropEffect = 'move'; // Cambiar el efecto de drop solo si es en boxcompleted
+    } else {
+        e.dataTransfer.dropEffect = 'copy'; // Permitir la copia (efecto predeterminado) en otros contenedores
     }
-});
-
-  
-  item.appendChild(deleteButton); 
-  item.appendChild(titleElement);
-  item.appendChild(paragraphElement);
-  item.appendChild(dateElement);
-    //item.textContent = taskInput + " " + taskCont; // Asignar el valor del campo de entrada y el contenido del campo de texto como contenido del elemento
-
-    item.draggable = true; // Permitir que el elemento sea arrastrable
-    let itemId = 'item' + Date.now(); // Generar un ID único para el elemento
-    item.id = itemId;
-    item.addEventListener('dragstart', dragStart);
-
-    let contentPending = document.getElementById('contentPending');
-    let contentProgress = document.getElementById('contentProgress');
-    let contentCompleted = document.getElementById('contentCompleted');
-
-    // Crear un placeholder 
-    let placeholderPending = document.createElement('div');
-    placeholderPending.className = 'placeholder --start';
-    placeholderPending.addEventListener('dragover', dragOver);
-    placeholderPending.addEventListener('drop', drop);
-    contentPending.appendChild(placeholderPending);
-
-    let placeholderProgress = document.createElement('div');
-    placeholderProgress.className = 'placeholder --progress';
-    placeholderProgress.addEventListener('dragover', dragOver);
-    placeholderProgress.addEventListener('drop', drop);
-    contentProgress.appendChild(placeholderProgress);
-
-    let placeholderCompleted = document.createElement('div');
-    placeholderCompleted.className = 'placeholder --done';
-    placeholderCompleted.addEventListener('dragover', dragOver);
-    placeholderCompleted.addEventListener('drop', drop);
-    contentCompleted.appendChild(placeholderCompleted);
-
-    placeholderPending.appendChild(item);
-
-    // Limpiar el campo del formulario después de generar el elemento
-    document.getElementById('taskInput').value = '';
-    document.getElementById('taskCont').value = '';
-
-  }
-
-
-function dragStart(event) {//inicio el arrastre aqui
-    event.dataTransfer.setData('text/plain', event.target.id); //tranfiero texto e id
 }
 
-function dragOver(event) {
-    event.preventDefault();//el navegador no actua sobre el contenido cuando lo arrastro
+function dragLeave(e) {
+    e.target.classList.remove('drag-over');
 }
 
-// soltar y termunar
-function drop(event) {
-  event.preventDefault();
-  let itemId = event.dataTransfer.getData('text/plain');
-  let item = document.getElementById(itemId);
-  let targetPlaceholder = event.target;
+function drop(e) {
+    e.target.classList.remove('drag-over');
 
-  if (targetPlaceholder.classList.contains('--done')) {
-    
-      item.style.backgroundColor = '#09ff00';
-      item.style.color = 'black';
+    // Verificar si el contenedor es el boxcompleted
+    if (e.target.id === 'boxcompleted') {
+        // Obtener el ID del elemento arrastrado
+        const id = e.dataTransfer.getData('text/plain');
+        const draggable = document.getElementById(id);
 
-      let checkEmoji = document.createElement('span');
-      checkEmoji.textContent = '✅';
-      checkEmoji.className = 'check-emoji';
-      item.appendChild(checkEmoji);
-  }
+        // Agregar el elemento al contenedor boxcompleted
+        e.target.appendChild(draggable);
 
-  targetPlaceholder.appendChild(item);
+        // Deshabilitar la capacidad de arrastre del elemento
+        draggable.removeAttribute('draggable');
+
+        // Evitar que el elemento se pueda arrastrar fuera del contenedor boxcompleted
+        draggable.removeEventListener('dragstart', dragStart);
+
+        // Añadir clase al contenedor boxcompleted para indicar que un elemento ha sido soltado en él
+        e.target.classList.add('dropped-in-boxcompleted');
+    } else {
+        // get the draggable element
+        const id = e.dataTransfer.getData('text/plain');
+        const draggable = document.getElementById(id);
+
+        // add it to the drop target
+        e.target.appendChild(draggable);
+
+        // display the draggable element
+        draggable.classList.remove('hide');
+    }
 }
 
 
-
-document.addEventListener('DOMContentLoaded', function() {
-  const blockLayer = document.querySelector('.blocklayer');
-
-  blockLayer.addEventListener('dragstart', function(event) {
-      event.preventDefault(); // Detiene la acción predeterminada del evento de arrastre
-      event.stopPropagation(); // Detiene la propagación del evento de arrastre
-  });
-});

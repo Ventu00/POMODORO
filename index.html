@@ -38,39 +38,45 @@
       <div class="bar container text-center ">
         <button class="startbtn btn btn-dark" id="start_btn" onclick="start()">Start</button>
         <div class="tempo">
-          <p class="counter" data-bs-toggle="modal" data-bs-target="#exampleModal" id="counter">25:00</p>
+          <p class="counter"  id="counter">25:00</p>
         </div>
         <h1 id="apptittle" class="apptittle">POMODORO</h1>
       </div>
     
       <div class="contcols animate__animated  animate__fadeIn">
-        <div class="row  align-items-start ">
-          <div class="col animate__animated animate__fadeInUp">
-            <h1>Pending</h1>
-            <div id="contentPending" class="workcont">
-              <div class="row">
-                <button class="generar" data-bs-toggle="modal" data-bs-target="#exampleModal2"></button>
-         
-              </div>
+        <div class="row align-items-start">
+            <div class="container">
+                <div class="drop-targets">
+                    <div class="box" id="box1">
+                      Pending
+                        <!-- Aquí se agregarán los elementos -->
+                    </div>
+                    <div class="box">
+                      Doing
+                    </div>
+                    <div class="box" id="boxcompleted">
+                      Done
+                    </div>
+                </div>
+               
             </div>
-          </div>
-          <div class="col animate__animated animate__fadeInUp">
-            <h1>Doing</h1>
-            <div id="contentProgress" class="workcont">
-            </div>
-          </div>
-          <div class="col animate__animated animate__fadeInUp">
-            <h1>Done</h1>
-            <div class="blocklayer">
-
-            <div  id="contentCompleted" class="workcont">
-            </div>
-          </div>
-          </div>
         </div>
-      </div>
     </div>
     
+    <form id="taskForm">
+      <label for="taskName">Nombre de la Tarea:</label><br>
+      <input type="text" id="taskName" name="taskName"><br>
+      <label for="description">Descripción:</label><br>
+      <textarea id="description" name="description"></textarea><br>
+      <label for="category">Categoría:</label><br>
+      <select id="category" name="category">
+          <option value="M06">M06</option>
+          <option value="M07">M07</option>
+          <option value="M09">M09</option>
+      </select><br><br>
+      
+      <button type="button" id="addButton">Agregar Elemento</button>
+  </form>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
