@@ -151,11 +151,11 @@ p{
 }
 /* Adjusting background colors */
 .modal-content {
-  background-color: #263231; /* Or any color you prefer */
+  background-color: #263231; 
 }
 
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .btn-close{
@@ -165,31 +165,31 @@ p{
 
 @media screen and (max-width: 968px) {
   .option .col-md-4 {
-    flex: 0 0 33.33%; /* Cambia el ancho de los elementos a 33.33% cuando el ancho de la ventana es menor o igual a 768px */
+    flex: 0 0 33.33%; 
   }
 
   .custom-container {
-    max-width: 150px; /* Reducir el ancho máximo de los botones */
-    padding: 5px; /* Reducir el relleno de los botones */
+    max-width: 150px; 
+    padding: 5px; 
   }
 
   .option h3 {
-    font-size: 14px; /* Reducir el tamaño de la fuente para los títulos */
+    font-size: 14px; 
   }
 }
 
 @media screen and (max-width: 518px) {
   .option .col-md-4 {
-    flex: 0 0 33.33%; /* Cambia el ancho de los elementos a 33.33% cuando el ancho de la ventana es menor o igual a 768px */
+    flex: 0 0 33.33%; 
   }
 
   .custom-container {
-    max-width: 110px; /* Reducir el ancho máximo de los botones */
-    padding: 5px; /* Reducir el relleno de los botones */
+    max-width: 110px; 
+    padding: 5px; 
   }
 
   .option h3 {
-    font-size: 14px; /* Reducir el tamaño de la fuente para los títulos */
+    font-size: 14px; 
   }
 }
 
@@ -207,14 +207,11 @@ p{
 
   margin: 20px 0;
 }
-/* Estilo para los elementos dentro de boxcompleted */
 #boxcompleted .item {
   background-color: green;
 }
 
-/* Clase para el contenedor boxcompleted cuando un elemento es soltado en él */
 #boxcompleted.dropped-in-boxcompleted {
-  /* Puedes agregar estilos adicionales si lo deseas */
 }
 
 
@@ -229,7 +226,7 @@ p{
 }
 
 .box {
-  min-height: 200px; /* Cambiando 'height' por 'min-height' */
+  min-height: 200px;
   min-width: 200px;
   border: solid 3px #ccc;
   margin: 10px;
@@ -251,18 +248,18 @@ p{
 
 
 .generar {
-  display: flex; /* Usar flexbox */
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   width: 50px;
   height: 50px;
   background-image: url('agregar.png');
   background-color: transparent;
-  background-size: contain; /* Ajusta la imagen para que se ajuste completamente dentro del área del botón */
-  background-repeat: no-repeat; /* Evita que la imagen se repita en caso de que el botón sea más grande que la imagen */
+  background-size: contain; 
+  background-repeat: no-repeat; 
   cursor: pointer;
-  border: none; /* Elimina el borde */
-  outline: none; /* Elimina el contorno al hacer clic */
+  border: none; 
+  outline: none; 
 
   text-transform: uppercase;
   transition: width 0.3s ease, height 0.3s ease, top 0.3s ease; 

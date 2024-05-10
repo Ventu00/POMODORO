@@ -52,7 +52,7 @@ function violetCounterFunction() {
           }
       }
 
-      const violetInterval = setInterval(updateCounter, 1000); // Run updateCounter every second
+      const violetInterval = setInterval(updateCounter, 1000); 
   }
 }
 
@@ -71,11 +71,11 @@ if (blue) {
         blueTimeLeft--;
 
         if (blueTimeLeft < 0) {
-            clearInterval(blueInterval); // Stop the interval when time runs out
+            clearInterval(blueInterval); 
         }
     }
 
-    const blueInterval = setInterval(updateCounter, 1000); // Run updateCounter every second
+    const blueInterval = setInterval(updateCounter, 1000); 
 }
 }
 
@@ -96,7 +96,7 @@ function counter() {
       timeLeft--;
 
       if (timeLeft < 0) {
-          clearInterval(countdownInterval); // Stop the interval when time runs out
+          clearInterval(countdownInterval); 
           let miModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
           miModal.show();
           textbtn.innerText = "Restart";
@@ -130,7 +130,6 @@ counter();
 
 
 
-  // Función para obtener la fecha actual en formato legible
   function obtenerFechaActual() {
     let fecha = new Date();
     let opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -138,22 +137,18 @@ counter();
     return 'Date: ' + fecha.toLocaleDateString('es-ES', opcionesFecha) + ' Hour: ' + fecha.toLocaleTimeString('es-ES', opcionesHora);
   }
   
-  // Agregar un nuevo elemento al hacer clic en el botón
   const addButton = document.getElementById('addButton');
   addButton.addEventListener('click', addItem);
   
   function addItem() {
-    // Obtener los valores del formulario
     const taskName = document.getElementById('taskName').value;
     const description = document.getElementById('description').value;
     const category = document.getElementById('category').value;
 
-    // Crear un nuevo elemento con los detalles proporcionados
     const newElement = document.createElement('div');
     newElement.classList.add('item');
     newElement.draggable = true;
 
-    // Contenido del nuevo elemento (incluyendo el botón de eliminar)
     newElement.innerHTML = `
         <p>Tarea: ${taskName}</p>
         <p>Descripción: ${description}</p>
@@ -162,7 +157,7 @@ counter();
         <button class="deleteButton">Eliminar</button>
     `;
 
-    // Asignar un ID único al nuevo elemento
+    // Asignar un ID 
     const newId = 'item' + (document.querySelectorAll('.item').length + 1);
     newElement.id = newId;
 
@@ -170,13 +165,11 @@ counter();
     const firstBox = document.getElementById('box1');
     firstBox.appendChild(newElement);
 
-    // Añadir el controlador de eventos dragstart al nuevo elemento
+    // Añadir el controlador de eventos dragstart
     newElement.addEventListener('dragstart', dragStart);
 
-    // Agregar el controlador de eventos clic al botón de eliminar
     const deleteButton = newElement.querySelector('.deleteButton');
     deleteButton.addEventListener('click', () => {
-        // Mostrar un alerta y eliminar el elemento si se confirma
         if (confirm("¿Seguro que quieres eliminar esta tarea?")) {
             newElement.remove();
         }
@@ -185,7 +178,6 @@ counter();
 
   
 
-// Función para el evento dragstart
 function dragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
     setTimeout(() => {
@@ -194,7 +186,6 @@ function dragStart(e) {
 }
 
 
-/* drop targets */
 const boxes = document.querySelectorAll('.box');
 
 boxes.forEach(box => {
@@ -212,13 +203,6 @@ function dragEnter(e) {
 function dragOver(e) {
     e.preventDefault();
     e.target.classList.add('drag-over');
-
-    // Verificar si el contenedor es el boxcompleted
-    if (e.target.id === 'boxcompleted') {
-        e.dataTransfer.dropEffect = 'move'; // Cambiar el efecto de drop solo si es en boxcompleted
-    } else {
-        e.dataTransfer.dropEffect = 'copy'; // Permitir la copia (efecto predeterminado) en otros contenedores
-    }
 }
 
 function dragLeave(e) {
@@ -228,9 +212,8 @@ function dragLeave(e) {
 function drop(e) {
     e.target.classList.remove('drag-over');
 
-    // Verificar si el contenedor es el boxcompleted
     if (e.target.id === 'boxcompleted') {
-        // Obtener el ID del elemento arrastrado
+
         const id = e.dataTransfer.getData('text/plain');
         const draggable = document.getElementById(id);
 
@@ -239,11 +222,8 @@ function drop(e) {
 
         // Deshabilitar la capacidad de arrastre del elemento
         draggable.removeAttribute('draggable');
-
-        // Evitar que el elemento se pueda arrastrar fuera del contenedor boxcompleted
         draggable.removeEventListener('dragstart', dragStart);
 
-        // Añadir clase al contenedor boxcompleted para indicar que un elemento ha sido soltado en él
         e.target.classList.add('dropped-in-boxcompleted');
     } else {
         // get the draggable element
