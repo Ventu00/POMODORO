@@ -2,6 +2,18 @@ let green = false;
 let violet = false;
 let blue = false;
 
+let isPaused = true;
+let counterElement = document.getElementById('counter');
+let timeLeft = 0.5 * 60; 
+let textbtn = document.getElementById('start_btn');
+let countdownInterval; 
+violetCounterFunction();
+blueCounterFunction();
+counter();
+
+
+
+
 function changeColor(color) {
   let modalBodyElements = document.querySelectorAll('.modal-body');
   modalBodyElements.forEach(function(element) {
@@ -79,11 +91,8 @@ if (blue) {
 }
 }
 
-let isPaused = true;
-let counterElement = document.getElementById('counter');
-let timeLeft =25 * 60; 
-let textbtn = document.getElementById('start_btn');
-let countdownInterval; 
+
+
 
 function counter() {
   if (!isPaused) {
@@ -105,8 +114,7 @@ function counter() {
 }
 
 
-violetCounterFunction();
-blueCounterFunction();
+
 
 function start() {
   if (isPaused) {
@@ -126,7 +134,6 @@ function start() {
   }
 }
 
-counter();
 
 
 
